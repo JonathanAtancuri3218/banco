@@ -2,6 +2,7 @@ package ec.ups.edu.banco.modelo;
 
 public class Usuario {
 	
+	
 	private String cedula;
 	private String nombre;
 	private String apellido;
