@@ -2,8 +2,13 @@ package ec.ups.edu.banco.modelo;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Solicitud {
 
+	@Id
 	private int numeroSolicitud;
 	private Date fechaCreacion;
 	private String estado;

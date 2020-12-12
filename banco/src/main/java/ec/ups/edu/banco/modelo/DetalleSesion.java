@@ -2,11 +2,16 @@ package ec.ups.edu.banco.modelo;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class DetalleSesion {
 
 	private String detalleSesion;
 	private String DireccionIPSesion;
 	private Date fechaSesion;
+	@Id
 	private int idSesion;
 	
 	

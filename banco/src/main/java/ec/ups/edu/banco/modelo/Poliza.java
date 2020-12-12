@@ -2,14 +2,21 @@ package ec.ups.edu.banco.modelo;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Poliza {
 	
+	@Id
 	private int numeroPoliza;
 	private String plazo;
 	private Date fechaInicio;
 	private Date fechaFin;
 	private double interes;
 	private double monto;
+	
+	
 	public int getNumeroPoliza() {
 		return numeroPoliza;
 	}

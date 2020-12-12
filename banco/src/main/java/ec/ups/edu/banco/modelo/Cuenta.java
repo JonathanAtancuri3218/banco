@@ -1,7 +1,12 @@
 package ec.ups.edu.banco.modelo;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Cuenta {
 
+	@Id
 	private int numCuental;
 	private String tipoCuenta;
 	private double saldoCuenta;

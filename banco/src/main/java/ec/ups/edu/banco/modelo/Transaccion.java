@@ -2,11 +2,16 @@ package ec.ups.edu.banco.modelo;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Transaccion {
 
 	private String tipoTransaccion;
 	private Double valorTrasaccion;
 	private Date fechaTransaccion;
+	@Id
 	private int idTransaccion;
 	
 	
