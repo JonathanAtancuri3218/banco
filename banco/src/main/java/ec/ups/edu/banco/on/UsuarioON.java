@@ -8,15 +8,15 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import javax.persistence.Query;
 
-import ec.ups.edu.transferproject.dao.TransaccionDAO;
-import ec.ups.edu.transferproject.dao.UsuarioDAO;
+import ec.ups.edu.banco.dao.TransaccionDAO;
+import ec.ups.edu.banco.dao.UsuarioDAO;
 
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import ups.edu.ec.modelos.Cliente;
-import ups.edu.ec.modelos.Usuario;
+import ec.ups.edu.banco.modelo.Cliente;
+import ec.ups.edu.banco.modelo.Usuario;
 
 @Stateless
 public class UsuarioON {
