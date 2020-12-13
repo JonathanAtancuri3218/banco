@@ -5,8 +5,8 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
-import ec.ups.edu.transferproject.dao.SesionDAO;
-import ups.edu.ec.modelos.DetalleSesion;
+import ec.ups.edu.banco.dao.SesionDAO;
+import ec.ups.edu.banco.modelo.DetalleSesion;
 
 @Stateless
 public class DetalleSesionON {
