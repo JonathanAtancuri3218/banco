@@ -2,19 +2,43 @@ package ec.ups.edu.banco.modelo;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+import ec.ups.edu.banco.modelo.Usuario;
 
 @Entity
 public class DetalleSesion {
 
-	private String detalleSesion;
-	private String DireccionIPSesion;
-	private Date fechaSesion;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idSesion;
-	
-	
+	@Column(nullable = false)
+	private String fechaSesion;
+	@Column(nullable = false)
+	private String detalleSesion;
+	@Column(nullable = false)
+	private String direccionIPSesion;
+	@ManyToOne
+    @JoinColumn(name = "cedulaUsuario")
+    private Usuario detalleS;
+	public int getIdSesion() {
+		return idSesion;
+	}
+	public void setIdSesion(int idSesion) {
+		this.idSesion = idSesion;
+	}
+	public String getFechaSesion() {
+		return fechaSesion;
+	}
+	public void setFechaSesion(String fechaSesion) {
+		this.fechaSesion = fechaSesion;
+	}
 	public String getDetalleSesion() {
 		return detalleSesion;
 	}
@@ -22,23 +46,23 @@ public class DetalleSesion {
 		this.detalleSesion = detalleSesion;
 	}
 	public String getDireccionIPSesion() {
-		return DireccionIPSesion;
+		return direccionIPSesion;
 	}
 	public void setDireccionIPSesion(String direccionIPSesion) {
-		DireccionIPSesion = direccionIPSesion;
+		this.direccionIPSesion = direccionIPSesion;
 	}
-	public Date getFechaSesion() {
-		return fechaSesion;
+	public Usuario getDetalleS() {
+		return detalleS;
 	}
-	public void setFechaSesion(Date fechaSesion) {
-		this.fechaSesion = fechaSesion;
+	public void setDetalleS(Usuario detalleS) {
+		this.detalleS = detalleS;
 	}
-	public int getIdSesion() {
-		return idSesion;
+	@Override
+	public String toString() {
+		return "DetalleSesion [idSesion=" + idSesion + ", fechaSesion=" + fechaSesion + ", detalleSesion="
+				+ detalleSesion + ", direccionIPSesion=" + direccionIPSesion + ", detalleS=" + detalleS + "]";
 	}
-	public void setIdSesion(int idSesion) {
-		this.idSesion = idSesion;
-	}
+
 	
 	
 }
