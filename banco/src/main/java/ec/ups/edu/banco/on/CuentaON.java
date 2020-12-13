@@ -19,12 +19,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.persistence.metamodel.ListAttribute;
 
-
 import ec.ups.edu.banco.dao.CuentaDAO;
 import ec.ups.edu.banco.dao.UsuarioDAO;
 import ec.ups.edu.banco.modelo.Amortizacion;
 import ec.ups.edu.banco.modelo.Cuenta;
 import ec.ups.edu.banco.modelo.DetalleSesion;
+import ec.ups.edu.banco.modelo.Transferencia;
 import ec.ups.edu.banco.modelo.Usuario;
 
 @Stateless
@@ -35,7 +35,7 @@ public class CuentaON {
 	private UsuarioON usuarioOn;
 	@Inject
 	private TransaccionON transaccionON;
-
+ 
 
 	
 	public Cuenta BuscarCuenta(String cuenta) {
@@ -72,7 +72,7 @@ public class CuentaON {
 		String body = "Un saludo cordial de Miutranfer cop.\nEl presente correo es para indicar que su cuenta fue creada correctamente\n"
 				+ "Su numero de cuenta es:" + us.getCuenta().getNumCuenta()
 				+ "\nPuede ingregar con su correo o usuario :" + us.getEmailUsuario() + " ----- " + us + " \n"
-				+ "Su contraseÃ±a es : " + us.getContraseniaUsuario() + "\n\n\n\n"
+				+ "Su contraseña es : " + us.getContraseniaUsuario() + "\n\n\n\n"
 				+ "Gracias por elegirnos\nEste correo es solo informativo no debe ser respondido";
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -106,7 +106,83 @@ public class CuentaON {
 	 * @param estado
 	 * @return
 	 */
-		/**
+	public void MailCreditoRechazado(Usuario us) {
+		System.out.println("---------- " + us.getEmailUsuario());
+		System.out.println("---------- " + us.getContraseniaUsuario());
+		String subject = "Detalles credito";
+		String from = "jviscainoq@gmail.com";
+		String body = "Un saludo cordial de Miutranfer cop.\nEl presente correo es para indicar que su credito ha sido rechazado por no cumplir con los requisitos necesarios\n"
+				+ "Para mas informacion por favor acercarse a consultoria"+ "\n\n\n\n"
+				+ "Gracias por elegirnos\nEste correo es solo informativo no debe ser respondido";
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(from, "ENDneel.123");
+			}
+		});
+
+		try {
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(from));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(us.getEmailUsuario()));
+			message.setSubject(subject);
+			message.setText(body);
+			Transport.send(message);
+ 
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	
+	public void MailCreditoAceptado(Usuario us, List<Amortizacion> ListAmortizacion) {
+		String head=String.format("%30s %25s %10s %25s %10s", "#", "|", "Fecha($)", "|", "Cuota($)");
+        String sep=String.format("%s", "---------------------------------------------------------------------------------------------------------");
+        String a="";
+        int z=0;
+        for (Amortizacion am : ListAmortizacion) {
+        	a+=String.format("%30s %25s %10s %25s %10s\n",++z , "|", am.getFechaCuota(), "|", String.valueOf(am.getCuotaAmortizacion()));
+			
+		}
+        System.out.println(head);
+        System.out.println(sep);
+        System.out.println(a);
+		System.out.println("---------- " + us.getEmailUsuario());
+		String subject = "Detalles credito";
+		String from = "jviscainoq@gmail.com";
+		String body = "Un saludo cordial de Miutranfer cop.\nEl presente correo es para indicar que su credito ha sido aceptado a continuacion adjuntamos la tabla de amortizacion\n"
+				+ "Cabe recalcar que esta informacion ya se encuentra subida en su pagina personal"+ "\n"+head+"\n"+sep+"\n"+a+"\n\n\n"
+				+ "Gracias por elegirnos\nEste correo es solo informativo no debe ser respondido";
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(from, "ENDneel.123");
+			}
+		});
+		try {
+
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(from));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(us.getEmailUsuario()));
+			message.setSubject(subject);
+			message.setText(body);
+			Transport.send(message);
+ 
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
+	/**
 	 * 
 	 * @param us
 	 * @param estado
@@ -188,9 +264,9 @@ public class CuentaON {
 		String body = "";
 		String detalle = "exitoso";
 		
-		body = "MiauTranfer notifica que el cambio de contraseÃ±a fue " + detalle + " en el dispositivo: "
+		body = "MiauTranfer notifica que el cambio de contraseña fue " + detalle + " en el dispositivo: "
 				+ address.getHostAddress() + " el dia: " + date
-				+ "\nsu nueva contraseÃ±a es: "+us.getContraseniaUsuario()+"\n\n\n\nSi esta transaccion no fue realizada por ud o autorizada comuniquese con nosotros"
+				+ "\nsu nueva contraseña es: "+us.getContraseniaUsuario()+"\n\n\n\nSi esta transaccion no fue realizada por ud o autorizada comuniquese con nosotros"
 				+ "\nGracias por preferirnos";
 
 		Properties props = new Properties();
@@ -215,7 +291,97 @@ public class CuentaON {
 			throw new RuntimeException(e);
 		}
 	}
+	public void transferenciaToEmail(Usuario us, Transferencia t) {
+		System.out.println("----------sendemail " + us.getEmailUsuario());
+		InetAddress address = null;
+		try {
+			address = InetAddress.getLocalHost();
+		} catch (UnknownHostException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String pattern = "dd/MM/yy HH:mm:ss";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		String date = simpleDateFormat.format(new Date());
+		String subject = "Inicio de Sesion";
+		String from = "jviscainoq@gmail.com";
+		String body = "";
+		String detalle = "Transferencia";
+		
+		body = "MiauTranfer notifica que la" + detalle + " desde la cuenta: "+t.getCuentaOrigen()
+				+ "hacia la cuenta: "+t.getCuentaDestino()+" el dia: " + date
+				+ "\n "+""+"\n\n\n\nSi esta transaccion no fue realizada por ud o autorizada comuniquese con nosotros"
+				+ "\nGracias por preferirnos";
 
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(from, "ENDneel.123");
+			}
+		});
+		try {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(from));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(us.getEmailUsuario()));
+			message.setSubject(subject);
+			message.setText(body);
+			transaccionON.guardarTransaccion(us.getCuenta(), t.getMonto(), "Transferencia");
+			Transport.send(message);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+		
+	}
+	public void transferenciaFromEmail(Usuario us,Transferencia t) {
+		System.out.println("----------sendemail " + us.getEmailUsuario());
+		InetAddress address = null;
+		try {
+			address = InetAddress.getLocalHost();
+		} catch (UnknownHostException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		String pattern = "dd/MM/yy HH:mm:ss";
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+		String date = simpleDateFormat.format(new Date());
+		String subject = "Inicio de Sesion";
+		String from = "jviscainoq@gmail.com";
+		String body = "";
+		String detalle = "Transferencia";
+		
+		body = "MiauTranfer notifica que la" + detalle + " desde su cuenta: "+t.getCuentaOrigen()
+				+ "hacia la cuenta: "+t.getCuentaDestino()+" el dia: " + date
+				+ "\n "+"Se realizo con exito"+"\n\n\n\nSi esta transaccion no fue realizada por ud o autorizada comuniquese con nosotros"
+				+ "\nGracias por preferirnos";
+
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
+			protected PasswordAuthentication getPasswordAuthentication() {
+				return new PasswordAuthentication(from, "ENDneel.123");
+			}
+		});
+		try {
+			Message message = new MimeMessage(session);
+			message.setFrom(new InternetAddress(from));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(us.getEmailUsuario()));
+			message.setSubject(subject);
+			message.setText(body);
+			transaccionON.guardarTransaccion(us.getCuenta(), t.getMonto(), "Transferencia");
+			Transport.send(message);
+		} catch (MessagingException e) {
+			throw new RuntimeException(e);
+		}
+	}
 	/**
 	 * Metodo para crear cuenta, recibe como parametro el objeto cuenta
 	 * @param cuenta
@@ -252,6 +418,23 @@ public class CuentaON {
 	}
 	
 	
-	
-	
+	public boolean transferencia(Transferencia t) {
+		Usuario us=usuarioOn.consultarCuentaUsuario(t.getCuentaOrigen()).get(0);
+		Usuario us1=usuarioOn.consultarCuentaUsuario(t.getCuentaDestino()).get(0);
+		
+		if(us==null && us1==null || t.getMonto()>us.getCuenta().getSaldoCuenta()) {
+			return false;
+		}else {
+		us.getCuenta().setSaldoCuenta(us.getCuenta().getSaldoCuenta()-t.getMonto());
+		us1.getCuenta().setSaldoCuenta(us1.getCuenta().getSaldoCuenta()+t.getMonto());
+		Cuenta cuenta= us.getCuenta();
+		actualizarCuenta(cuenta);
+		transferenciaFromEmail(us, t);
+		Cuenta cuenta1= us1.getCuenta();
+		transferenciaToEmail(us1, t);
+		actualizarCuenta(cuenta1);
+		return true;
+		}
+	}
+	 
 }
