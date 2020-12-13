@@ -68,7 +68,7 @@ public class CuentaON {
 		System.out.println("---------- " + us.getEmailUsuario());
 		System.out.println("---------- " + us.getContraseniaUsuario());
 		String subject = "Creacion de Cuenta";
-		String from = "jviscainoq@gmail.com";
+		final String from = "jviscainoq@gmail.com";
 		String body = "Un saludo cordial de Miutranfer cop.\nEl presente correo es para indicar que su cuenta fue creada correctamente\n"
 				+ "Su numero de cuenta es:" + us.getCuenta().getNumCuenta()
 				+ "\nPuede ingregar con su correo o usuario :" + us.getEmailUsuario() + " ----- " + us + " \n"
@@ -201,7 +201,7 @@ public class CuentaON {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(new Date());
 		String subject = "Inicio de Sesion";
-		String from = "jviscainoq@gmail.com";
+		final String from = "jviscainoq@gmail.com";
 		String body = "";
 		String detalle = "";
 		if (estado == 0) {
@@ -260,7 +260,7 @@ public class CuentaON {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(new Date());
 		String subject = "Inicio de Sesion";
-		String from = "jviscainoq@gmail.com";
+		final String from = "jviscainoq@gmail.com";
 		String body = "";
 		String detalle = "exitoso";
 		
