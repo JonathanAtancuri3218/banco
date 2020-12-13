@@ -3,82 +3,90 @@ package ec.ups.edu.banco.modelo;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+
+import ec.ups.edu.banco.modelo.Cuenta;
+import ec.ups.edu.banco.modelo.DetalleSesion;
 @Entity
 public class Usuario {
-	
-	
-	private String cedula;
-	private String nombre;
-	private String apellido;
-	private String email;
-	private String telefono;
-	private String direccion;
-	private String usuarioNombre;
-	private String contraseña;
+
+	@Id
+	private String cedulaUsuario;
+	@Column(nullable = false)
+	private String nombreUsuario;
+	@Column(nullable = false)
+	private String apellidoUsuario;
+	@Column(nullable = false)
+	private String emailUsuario;
+	@Column(nullable = false)
+	private String telefonoUsuario;
+	@Column(nullable = false)
+	private String direccionUsuario;
+	@Column(nullable = false)
+	private String usuarioNombreU;
+	@Column(nullable = false)
+	private String contraseniaUsuario;
+	@Column(nullable = true)
 	private String tipoUsuario;
 	@OneToMany(cascade = {CascadeType.ALL}, fetch = FetchType.EAGER, mappedBy = "detalleS")
 	private List<DetalleSesion> listaDS;
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "numCuenta")
 	private Cuenta cuenta;
-	public String getCedula() {
-		return cedula;
+
+	public String getCedulaUsuario() {
+		return cedulaUsuario;
 	}
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
+	public void setCedulaUsuario(String cedulaUsuario) {
+		this.cedulaUsuario = cedulaUsuario;
 	}
-	public String getNombre() {
-		return nombre;
+	public String getNombreUsuario() {
+		return nombreUsuario;
 	}
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
 	}
-	public String getApellido() {
-		return apellido;
+	public String getApellidoUsuario() {
+		return apellidoUsuario;
 	}
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setApellidoUsuario(String apellidoUsuario) {
+		this.apellidoUsuario = apellidoUsuario;
 	}
-	public String getEmail() {
-		return email;
+	public String getEmailUsuario() {
+		return emailUsuario;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmailUsuario(String emailUsuario) {
+		this.emailUsuario = emailUsuario;
 	}
-	public String getTelefono() {
-		return telefono;
+	public String getTelefonoUsuario() {
+		return telefonoUsuario;
 	}
-	public void setTelefono(String telefono) {
-		this.telefono = telefono;
+	public void setTelefonoUsuario(String telefonoUsuario) {
+		this.telefonoUsuario = telefonoUsuario;
 	}
-	public String getDireccion() {
-		return direccion;
+	public String getDireccionUsuario() {
+		return direccionUsuario;
 	}
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	public void setDireccionUsuario(String direccionUsuario) {
+		this.direccionUsuario = direccionUsuario;
 	}
-	public String getUsuarioNombre() {
-		return usuarioNombre;
+	public String getUsuarioNombreU() {
+		return usuarioNombreU;
 	}
-	public void setUsuarioNombre(String usuarioNombre) {
-		this.usuarioNombre = usuarioNombre;
+	public void setUsuarioNombreU(String usuarioNombreU) {
+		this.usuarioNombreU = usuarioNombreU;
 	}
-	public String getContraseña() {
-		return contraseña;
+	public String getContraseniaUsuario() {
+		return contraseniaUsuario;
 	}
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
-	}
-	public String getTipoUsuario() {
-		return tipoUsuario;
-	}
-	public void setTipoUsuario(String tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
+	public void setContraseniaUsuario(String contraseniaUsuario) {
+		this.contraseniaUsuario = contraseniaUsuario;
 	}
 	public List<DetalleSesion> getListaDS() {
 		return listaDS;
@@ -92,17 +100,20 @@ public class Usuario {
 	public void setCuenta(Cuenta cuenta) {
 		this.cuenta = cuenta;
 	}
+	public String getTipoUsuario() {
+		return tipoUsuario;
+	}
+	public void setTipoUsuario(String tipoUsuario) {
+		this.tipoUsuario = tipoUsuario;
+	}
 	@Override
 	public String toString() {
-		return "Usuario [cedula=" + cedula + ", nombre=" + nombre + ", apellido=" + apellido + ", email=" + email
-				+ ", telefono=" + telefono + ", direccion=" + direccion + ", usuarioNombre=" + usuarioNombre
-				+ ", contraseña=" + contraseña + ", tipoUsuario=" + tipoUsuario + ", listaDS=" + listaDS + ", cuenta="
-				+ cuenta + "]";
+		return "Usuario [cedulaUsuario=" + cedulaUsuario + ", nombreUsuario=" + nombreUsuario + ", apellidoUsuario="
+				+ apellidoUsuario + ", emailUsuario=" + emailUsuario + ", telefonoUsuario=" + telefonoUsuario
+				+ ", direccionUsuario=" + direccionUsuario + ", usuarioNombreU=" + usuarioNombreU
+				+ ", contraseniaUsuario=" + contraseniaUsuario + ", tipoUsuario=" + tipoUsuario + ", listaDS=" + listaDS
+				+ ", cuenta=" + cuenta + "]";
 	}
-	
-	
-	
-	
-	
+
 	
 }
