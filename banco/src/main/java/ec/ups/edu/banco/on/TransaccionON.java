@@ -50,7 +50,7 @@ public class TransaccionON {
 	 */
 	public List<Transaccion> listarTransaccionesPorfecha(String desde, String hasta, String cuenta){
 		List<Transaccion> list=trandao.ListaCuentaTransaccion(cuenta);
-		List<Transaccion> listaFechas=new ArrayList<>();
+		List<Transaccion> listaFechas=new ArrayList<Transaccion>();
 		DateFormat f = DateFormat.getDateInstance(DateFormat.SHORT);
 		String desdef;
 		String hastaf;
