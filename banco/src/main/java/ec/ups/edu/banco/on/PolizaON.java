@@ -1,5 +1,8 @@
 package ec.ups.edu.banco.on;
 
-public class AmortizacionON {
 
+public class PolizaON {
+
+
+	
 }

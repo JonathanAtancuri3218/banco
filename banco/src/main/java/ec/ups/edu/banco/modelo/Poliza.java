@@ -16,7 +16,6 @@ public class Poliza {
 	private double interes;
 	private double monto;
 	
-	
 	public int getNumeroPoliza() {
 		return numeroPoliza;
 	}
