@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/TemplateCliente.xhtml">
+	<ui:define name="content">
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="card">
+							<div class="card-header card-header-primary">
+								<h4 class="card-title">Detalles cuenta</h4>
+							</div>
+							<div class="card-body">
+								<h:dataTable value="#{gestionClienteBean.consultaCliente}"
+									var="usuario" class="table" id="tablatransacciones">
+									<h:column>
+										<f:facet name="header">Numero de cuenta</f:facet>
+										<h:outputLabel value="#{usuario.cuenta.numCuenta}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Nombres</f:facet>
+										<h:outputLabel value="#{usuario.nombreUsuario}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Apellidos</f:facet>
+										<h:outputLabel value="#{usuario.apellidoUsuario}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Saldo</f:facet>
+										<h:outputLabel value="#{usuario.cuenta.saldoCuenta}" />
+									</h:column>
+
+								</h:dataTable>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+				<!--  
+		<h:form id="form">
+			<p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true" />
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card">
+								<div class="card-header card-header-primary">
+									<h4 class="card-title">Detalles credito</h4>
+								</div>
+								<h:dataTable value="#{creditoBean.listarCreditoId}"
+									var="credito" class="table" id="credito">
+									<h:column>
+										<f:facet name="header">Numero de cuenta</f:facet>
+										<h:outputLabel value="#{credito.cuenta.numCuenta}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Tipo</f:facet>
+										<h:outputLabel value="#{credito.proposito}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Monto</f:facet>
+										<h:outputLabel value="#{credito.monto}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Saldo</f:facet>
+										<h:outputLabel value="#{credito.cuenta.saldoCuenta}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Estado</f:facet>
+										<h:outputLabel value="#{credito.estadoCredito}" />
+									</h:column>
+									<h:column>
+										<f:facet name="header">Fecha ultimo vencimiento</f:facet>
+										<h:outputLabel value="#{creditoBean.lista.get(0).fechaCuota}" />
+									</h:column>
+								</h:dataTable>
+								
+								<p:messages id="messages" showDetail="true" closable="true">
+									<p:autoUpdate />
+								</p:messages>
+								<p:accordionPanel>
+									<p:tab title="Descripcion">
+										<h:panelGrid columns="2" cellpadding="10">
+
+											<h:dataTable value="#{creditoBean.lista}" var="c"
+												class="table" id="tablatransacciones">
+												<h:column>
+													<f:facet name="header">Periodo Amortizacion</f:facet>
+													<h:outputLabel value="#{c.periodoAmortizacion}" />
+												</h:column>
+												<h:column>
+													<f:facet name="header">Fecha cuota</f:facet>
+													<h:outputLabel value="#{c.fechaCuota}" />
+												</h:column>
+												<h:column>
+													<f:facet name="header">Valor cuota</f:facet>
+													<h:outputLabel value="#{c.cuotaAmortizacion}" />
+												</h:column>
+												<h:column>
+													<f:facet name="header">Estado amortizacion</f:facet>
+													<h:outputLabel value="#{c.estadoAmortizacion}" />
+												</h:column>
+
+											</h:dataTable>
+
+
+										</h:panelGrid>
+										
+										
+									</p:tab>
+
+								</p:accordionPanel>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+		-->
+
+		<h:form>
+			<div class="btn-group" role="group" aria-label="Basic example">
+
+				<p:linkButton outcome="ContenidoDetalle" value="Ver Movimientos"  class="btn btn-primary btn-lg btn-block">
+					<f:param name="movimiento" value="10" />
+				</p:linkButton>
+
+			</div>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>
+</html>

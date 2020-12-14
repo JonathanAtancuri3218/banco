@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/TemplateCliente.xhtml">
+	<ui:define name="usuariodetalles">
+		<h:form>
+			<div class="row">
+			<div class="form-group col-md-12 ">
+				<div class="btn-group" role="group" aria-label="Basic example">
+					<p:linkButton outcome="ConsultaMovimiento"
+						class="btn btn-primary btn-lg btn-block"
+						value="Consulta Movimientos">
+						<f:param name="movimiento" value="10" />
+					</p:linkButton>
+					<p:linkButton outcome="ContenidoDetalle" value="Detalle de cuenta"
+						class="btn btn-primary btn-lg btn-block">
+						<f:param name="movimiento" value="10" />
+					</p:linkButton>
+				</div>
+				</div>
+				<div class="form-group col-md-4">
+					<h:outputLabel for="tipo" value="Tipo: " />
+					<p:selectOneMenu id="tipo"
+						value="#{gestionClienteBean.transaccion.tipoTransaccion}"
+						editable="true">
+						<f:selectItem itemLabel="Transacciones" itemValue="Transacciones" />
+						<f:selectItem itemLabel="Depositos" itemValue="Depositos" />
+						<f:selectItem itemLabel="Retiros" itemValue="Retiros" />
+						<f:selectItem itemLabel="Fecha" itemValue="Fecha" />
+						<f:selectItem itemLabel="Todos" itemValue="Todos" />
+					</p:selectOneMenu>
+				</div>
+				<div class="form-group col-md-4">
+				<p:outputLabel for="calendar1" value="Fecha desde:" />
+				<p:datePicker id="calendar1" value="#{gestionClienteBean.desde}" />
+				</div>
+				<div class="form-group col-md-4">	
+				<p:outputLabel for="calendar2" value="Fecha hasta:" />
+				<p:datePicker id="calendar2" value="#{gestionClienteBean.hasta}" />
+				</div>
+				<div class="form-group col-md-12">
+
+					<h:commandButton class="btn btn-primary btn-lg btn-block"
+						value="Listar Transacciones"
+						action="#{gestionClienteBean.ListarTipoMovimiento()}">
+						<f:ajax render="tablatransacciones" execute="@all">
+						</f:ajax>
+					</h:commandButton>
+				</div>
+
+				<h:dataTable value="#{gestionClienteBean.listarTransaccionTipo}"
+					var="transaccion" class="table" id="tablatransacciones">
+					<h:column>
+						<f:facet name="header">Numero de cuenta</f:facet>			
+						<h:outputLabel value="#{transaccion.cuenta.numCuenta}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Fecha transacciones</f:facet>
+						<h:outputLabel value="#{transaccion.fechaTransaccion}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Localidad transaccion</f:facet>
+						<h:outputLabel value="#{transaccion.localidadTransaccion}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Tipo de transaccion</f:facet>
+						<h:outputLabel value="#{transaccion.tipoTransaccion}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">Valor de la transaccion</f:facet>
+						<h:outputLabel value="#{transaccion.valorTransaccion}" />
+						
+					</h:column>
+					<h:outputText value="#{transaccion.valorTransaccion}">
+					</h:outputText>
+				</h:dataTable>
+			</div>
+			<h:form>
+				<div class="btn-group" role="group" aria-label="Basic example">
+
+					<p:linkButton outcome="DetalleCuenta"
+						class="btn btn-primary btn-lg btn-block" value="Ir a Resumen">
+						<f:param name="movimiento" value="10" />
+					</p:linkButton>
+
+				</div>
+
+			</h:form>
+		</h:form>
+
+	</ui:define>
+</ui:composition>
+</html>
+

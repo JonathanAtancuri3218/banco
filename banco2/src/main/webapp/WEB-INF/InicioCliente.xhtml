@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/TemplateCliente.xhtml">x
+      <ui:define name="content">
+		<h:form>
+
+			<div class="btn-group" role="group" aria-label="Basic example">
+				<h:commandButton type="button" class="btn btn-secondary"
+					value="Detalle de Cuenta" action="#{gestionClienteBean.cambiarDetalle()}"></h:commandButton>
+				<h:commandButton type="button" class="btn btn-secondary"
+					value="Consulta de Movimiento" action="#{gestionClienteBean.cambiarMovimiento()}"></h:commandButton>
+			</div>
+
+			<div class="content">
+				<ui:insert name="usuariodetalles">
+
+				</ui:insert>
+			</div>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

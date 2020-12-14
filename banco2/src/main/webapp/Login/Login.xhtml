@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+<h:head>
+	<title>Cooperativa Sociedad</title>
+	<meta charset="UTF-8"></meta>
+	<meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+	<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="Login/Login/images/icons/favicon.ico"></link>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css"
+		href="Login/vendor/bootstrap/css/bootstrap.min.css"></link>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css"
+		href="Login/fonts/font-awesome-4.7.0/css/font-awesome.min.css"></link>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css"
+		href="Login/fonts/iconic/css/material-design-iconic-font.min.css"></link>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css"
+		href="Login/vendor/animate/animate.css"></link>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css"
+		href="Login/vendor/css-hamburgers/hamburgers.min.css"></link>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css"
+		href="Login/vendor/animsition/css/animsition.min.css"></link>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css"
+		href="Login/vendor/select2/select2.min.css"></link>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css"
+		href="Login/vendor/daterangepicker/daterangepicker.css"></link>
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="Login/css/util.css"></link>
+	<link rel="stylesheet" type="text/css" href="Login/css/main.css"></link>
+	<!--===============================================================================================-->
+</h:head>
+<h:body>
+
+<div class="content">
+      		<ui:insert name="content">
+							
+				</ui:insert>
+      </div>
+	<div class="container-login100"
+		style="background-image: url('Login/images/FondoGatitos1.jpg');">
+		<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
+			<h:form id="myform">
+				<h5 class="login100-form-title p-b-37"> Iniciar Sesion </h5>
+				<div class="form-row">
+					<div class="form-group col-md-12">
+					<h:outputLabel value="Nombre de usario o correo" for="usuario" />
+					<h:inputText class="form-control" type="text" name="username" value="#{gestionProyectoBean.usuario.emailUsuario}"></h:inputText>
+				</div>
+				<div class="form-group col-md-12">
+					<h:outputLabel value="Password" for="password" />
+					<h:inputSecret class="form-control"  name="pass" value="#{gestionProyectoBean.usuario.contraseniaUsuario}"></h:inputSecret>
+ 					<h:message class="error" for="pass" id="newPassword2Error" />
+					
+
+				</div>
+
+				<div class="container-login100-form-btn m-b-20">
+					<h:commandButton class="login100-form-btn" value="Iniciar Sesion" action="#{gestionProyectoBean.iniciarSesion()}">
+					</h:commandButton>
+				</div>
+				
+				<div class="container-login100-form-btn m-b-20">
+					<h:commandButton class="login100-form-btn" value="Crear cuenta" action="CrearCuenta">
+					
+					</h:commandButton>
+				</div>
+				</div>
+			</h:form>
+
+
+		</div>
+	</div>
+
+
+
+	<div id="dropDownSelect1"></div>
+
+	<!--===============================================================================================-->
+	<script src="Login/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="Login/vendor/animsition/js/animsition.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="Login/vendor/bootstrap/js/popper.js"></script>
+	<script src="Login/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="Login/vendor/select2/select2.min.js"></script>
+	<!--===============================================================================================-->
+	<script src="Login/vendor/daterangepicker/moment.min.js"></script>
+	<script src="Login/vendor/daterangepicker/daterangepicker.js"></script>
+	<!--===============================================================================================-->
+	<script src="Login/vendor/countdowntime/countdowntime.js"></script>
+	<!--===============================================================================================-->
+	<script src="Login/js/main.js"></script>
+
+</h:body>
+</html>

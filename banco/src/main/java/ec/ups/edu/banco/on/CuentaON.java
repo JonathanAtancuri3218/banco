@@ -20,12 +20,12 @@ import javax.mail.internet.MimeMessage;
 import javax.persistence.metamodel.ListAttribute;
 
 import ec.ups.edu.banco.dao.CuentaDAO;
-import ec.ups.edu.banco.dao.UsuarioDAO;
-import ec.ups.edu.banco.modelo.Amortizacion;
 import ec.ups.edu.banco.modelo.Cuenta;
 import ec.ups.edu.banco.modelo.DetalleSesion;
 import ec.ups.edu.banco.modelo.Transferencia;
 import ec.ups.edu.banco.modelo.Usuario;
+
+
 
 @Stateless
 public class CuentaON {
@@ -35,7 +35,8 @@ public class CuentaON {
 	private UsuarioON usuarioOn;
 	@Inject
 	private TransaccionON transaccionON;
- 
+	//@Inject
+	//private CreditoDAO credao;
 
 	
 	public Cuenta BuscarCuenta(String cuenta) {
@@ -68,7 +69,7 @@ public class CuentaON {
 		System.out.println("---------- " + us.getEmailUsuario());
 		System.out.println("---------- " + us.getContraseniaUsuario());
 		String subject = "Creacion de Cuenta";
-		final String from = "jviscainoq@gmail.com";
+		final String from = "jhona441cc@gmail.com";
 		String body = "Un saludo cordial de Miutranfer cop.\nEl presente correo es para indicar que su cuenta fue creada correctamente\n"
 				+ "Su numero de cuenta es:" + us.getCuenta().getNumCuenta()
 				+ "\nPuede ingregar con su correo o usuario :" + us.getEmailUsuario() + " ----- " + us + " \n"
@@ -79,11 +80,12 @@ public class CuentaON {
 		props.put("mail.smtp.starttls.enable", "true");
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
-
+		//props.put("mail.smtp.user", "jhonnhuarez@gmail.com"); //remitente
+		//props.put("mail.smtp.clave", "JOTA5613jhon"); //La clave de la cuenta
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, "ENDneel.123");
+				return new PasswordAuthentication(from, "JOTA5613jhon");
 			}
 		});
 
@@ -110,7 +112,7 @@ public class CuentaON {
 		System.out.println("---------- " + us.getEmailUsuario());
 		System.out.println("---------- " + us.getContraseniaUsuario());
 		String subject = "Detalles credito";
-		String from = "jviscainoq@gmail.com";
+		final String from = "jhona441cc@gmail.com";
 		String body = "Un saludo cordial de Miutranfer cop.\nEl presente correo es para indicar que su credito ha sido rechazado por no cumplir con los requisitos necesarios\n"
 				+ "Para mas informacion por favor acercarse a consultoria"+ "\n\n\n\n"
 				+ "Gracias por elegirnos\nEste correo es solo informativo no debe ser respondido";
@@ -122,7 +124,7 @@ public class CuentaON {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, "ENDneel.123");
+				return new PasswordAuthentication(from, "JOTA5613jhon");
 			}
 		});
 
@@ -140,6 +142,8 @@ public class CuentaON {
 		}
 	}
 	
+	
+	/*
 	public void MailCreditoAceptado(Usuario us, List<Amortizacion> ListAmortizacion) {
 		String head=String.format("%30s %25s %10s %25s %10s", "#", "|", "Fecha($)", "|", "Cuota($)");
         String sep=String.format("%s", "---------------------------------------------------------------------------------------------------------");
@@ -154,7 +158,7 @@ public class CuentaON {
         System.out.println(a);
 		System.out.println("---------- " + us.getEmailUsuario());
 		String subject = "Detalles credito";
-		String from = "jviscainoq@gmail.com";
+		String from = "jhona441cc@gmail.com";
 		String body = "Un saludo cordial de Miutranfer cop.\nEl presente correo es para indicar que su credito ha sido aceptado a continuacion adjuntamos la tabla de amortizacion\n"
 				+ "Cabe recalcar que esta informacion ya se encuentra subida en su pagina personal"+ "\n"+head+"\n"+sep+"\n"+a+"\n\n\n"
 				+ "Gracias por elegirnos\nEste correo es solo informativo no debe ser respondido";
@@ -166,7 +170,7 @@ public class CuentaON {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, "ENDneel.123");
+				return new PasswordAuthentication(from, "JOTA5613jhon");
 			}
 		});
 		try {
@@ -182,6 +186,9 @@ public class CuentaON {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	*/
+	
 	/**
 	 * 
 	 * @param us
@@ -201,7 +208,7 @@ public class CuentaON {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(new Date());
 		String subject = "Inicio de Sesion";
-		final String from = "jviscainoq@gmail.com";
+		final String from = "jhona441cc@gmail.com";
 		String body = "";
 		String detalle = "";
 		if (estado == 0) {
@@ -222,7 +229,7 @@ public class CuentaON {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, "ENDneel.123");
+				return new PasswordAuthentication(from, "JOTA5613jhon");
 			}
 		});
 		try {
@@ -260,7 +267,7 @@ public class CuentaON {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(new Date());
 		String subject = "Inicio de Sesion";
-		final String from = "jviscainoq@gmail.com";
+		final String from = "jhona441cc@gmail.com";
 		String body = "";
 		String detalle = "exitoso";
 		
@@ -277,7 +284,7 @@ public class CuentaON {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, "ENDneel.123");
+				return new PasswordAuthentication(from, "JOTA5613jhon");
 			}
 		});
 		try {
@@ -304,7 +311,7 @@ public class CuentaON {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(new Date());
 		String subject = "Inicio de Sesion";
-		String from = "jviscainoq@gmail.com";
+		final String from = "jhona441cc@gmail.com";
 		String body = "";
 		String detalle = "Transferencia";
 		
@@ -321,7 +328,7 @@ public class CuentaON {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, "ENDneel.123");
+				return new PasswordAuthentication(from, "JOTA5613jhon");
 			}
 		});
 		try {
@@ -335,7 +342,7 @@ public class CuentaON {
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		}
-		
+	
 	}
 	public void transferenciaFromEmail(Usuario us,Transferencia t) {
 		System.out.println("----------sendemail " + us.getEmailUsuario());
@@ -350,7 +357,7 @@ public class CuentaON {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(new Date());
 		String subject = "Inicio de Sesion";
-		String from = "jviscainoq@gmail.com";
+		final String from = "jhona441cc@gmail.com";
 		String body = "";
 		String detalle = "Transferencia";
 		
@@ -367,7 +374,7 @@ public class CuentaON {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, "ENDneel.123");
+				return new PasswordAuthentication(from, "JOTA5613jhon");
 			}
 		});
 		try {
@@ -436,5 +443,10 @@ public class CuentaON {
 		return true;
 		}
 	}
-	 
+	/*
+	public void actualizarEstadoCredito(Credito credito){
+		credao.actualizarCredito(credito);
+	}
+	*/
+	
 }

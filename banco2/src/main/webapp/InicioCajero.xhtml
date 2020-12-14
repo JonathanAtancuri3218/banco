@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="/resources/TemplateCajero.xhtml">x
+      <ui:define name="content">
+		
+		<div class="content">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-md-8">
+						<div class="card">
+							<div class="card-header card-header-primary">
+								<h4 class="card-title">Realizar retiros</h4>
+							</div>
+							
+							<h:form>
+							<div class="card-body">
+							
+								<div class="form-row">
+									<div class="form-group col-md-4">
+										<h:outputLabel value="Numero de cuenta" for="cuenta" />
+										<h:inputText class="form-control" type="text" name="cuenta1" value="#{cajeroBean.cuenta.numCuenta}"></h:inputText>
+									</div>
+									<div class="form-group col-md-8">
+									<h:commandButton class="btn btn-secondary btn-lg btn-block"
+										value="Buscar cuenta" action="#{cajeroBean.cargarClientes()}">
+									<f:ajax render="tablaCuenta" execute="@all"></f:ajax>
+
+									</h:commandButton>
+									</div>
+									
+									<div class="form-group col-md-12">
+									<h:dataTable value=""
+										var="usuarios" class="table" id="tablaCuenta" >
+										<h:column>
+											<f:facet name="header">Num.cuenta</f:facet>
+											<h:outputLabel value= "#{cajeroBean.usu.cuenta.numCuenta}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">Propietario</f:facet>
+											<h:outputLabel value="#{cajeroBean.usu.nombreUsuario}" />
+										</h:column>
+										<h:column>
+											<f:facet name="header">Saldo </f:facet>
+											<h:outputLabel value="#{cajeroBean.usu.cuenta.saldoCuenta}" />
+										</h:column>
+										<!-- <h:column>
+											<f:facet name="header">Ultima transaccion</f:facet>
+											<h:outputLabel/>
+										</h:column> -->
+									</h:dataTable>
+									</div>
+									<div class="form-group col-md-4">
+										<h:outputLabel value="Cantidad de retiro" for="cedula" />
+										<h:inputText class="form-control" type="number" name="cedula" value="#{cajeroBean.monto}">
+										<f:ajax event="keyup" render="mensaje" listener="#{cajeroBean.validarMonto}"/>
+										</h:inputText>
+									<h:outputText id="mensaje" class="mensaje-error" value="#{cajeroBean.mensajeErrorRetiro}"/>
+										
+									</div>
+									<div class="form-group col-md-8">
+									<h:commandButton class="btn btn-secondary btn-lg btn-block"
+										value="Realizar retiro" action="#{cajeroBean.retiro()}"
+										>
+									</h:commandButton>
+									</div>
+									
+								</div>
+								
+							</div>
+							</h:form>
+							
+						</div>
+					
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+	</ui:define>
+</ui:composition>
+</html>
