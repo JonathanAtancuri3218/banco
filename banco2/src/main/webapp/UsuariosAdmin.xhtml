@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/TemplateAdmin.xhtml">x
+      <ui:define name="content">
+		<h:form>
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-8">
+							<div class="card">
+								<div class="card-header card-header-primary">
+									<h4 class="card-title">Crear perfiles de administradores</h4>
+								</div>
+								<div class="card-body">
+									<div class="form-row">
+										<div class="form-group col-md-4">
+											<h:outputLabel value="Cedula" for="cedula" />
+											<h:inputText class="form-control" type="text" name="cedula"
+												value="#{gestionProyectoBean.usuario.cedulaUsuario}"></h:inputText>
+										</div>
+										<div class="form-group col-md-8">
+											<h:outputLabel value="Correo electronico" for="correo" />
+											<h:inputText class="form-control" type="text" name="correo"
+												value="#{gestionProyectoBean.usuario.emailUsuario}"></h:inputText>
+										</div>
+
+										<div class="form-group col-md-12">
+											<h:outputLabel value="Nombres" for="nombres" />
+											<h:inputText class="form-control" type="text" name="nombres"
+												value="#{gestionProyectoBean.usuario.nombreUsuario}"></h:inputText>
+										</div>
+										<div class="form-group col-md-12">
+											<h:outputLabel value="Apellidos" for="apellidos" />
+											<h:inputText class="form-control" type="text"
+												name="apellidos"
+												value="#{gestionProyectoBean.usuario.apellidoUsuario}"></h:inputText>
+										</div>
+
+										<div class="form-group col-md-8" >
+											<h:outputLabel value="Direccion domiciliaria" for="password" />
+											<h:inputText class="form-control" type="text"
+												name="direccion"
+												value="#{gestionProyectoBean.usuario.direccionUsuario}"></h:inputText>
+										</div>
+										<div class="form-group col-md-4" >
+											<h:outputLabel value="Telefono" for="telefono" />
+											<h:inputText class="form-control" type="text" name="telefono"
+												value="#{gestionProyectoBean.usuario.telefonoUsuario}"></h:inputText>
+										</div>
+
+										<div class="form-group col-md-6 ">
+											<h:outputLabel value="Usuario" for="Usuario" />
+											<h:inputText class="form-control" type="text" name="usuario"
+												id="us"
+												value="#{gestionProyectoBean.usuario.usuarioNombreU}">
+												<f:ajax event="keyup" render="mensaje"
+													listener="#{gestionProyectoBean.validacionUsuario}" />
+											</h:inputText>
+											<h:outputText id="mensaje" class="mensaje-error"
+												value="#{gestionProyectoBean.mensajeErrorNombre}" />
+										</div>
+										<div class="form-group col-md-6 ">
+										
+										<h:outputLabel for="tipo" value="Tipo: " />
+										<p:selectOneMenu id="tipo"
+											value="#{gestionProyectoBean.usuario.tipoUsuario}"
+											 editable="true">
+											<f:selectItem itemLabel="Administrador"
+												itemValue="Administrador" />
+											<f:selectItem itemLabel="Cajero" itemValue="Cajero" />
+											<f:selectItem itemLabel="Asistente de Captaciones"
+												itemValue="Asistente de Captaciones" />
+										</p:selectOneMenu>
+										</div>
+										<h:commandButton class="btn btn-secondary btn-lg btn-block"
+											value="Crear cuenta"
+											action="#{gestionProyectoBean.crearCuentaAdministrador()}">
+										</h:commandButton>
+
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<h:commandButton class="btn btn-secondary btn-lg btn-block"
+				value="Actualizar Lista de Usuarios"
+				action="#{gestionProyectoBean.ListarUsuariosTipo()}">
+				<f:ajax render="tablausuarios" execute="@all">
+				</f:ajax>
+			</h:commandButton>
+
+			<h:dataTable value="#{gestionProyectoBean.listaUsuariosTipo}"
+				var="usuarios" class="table" id="tablausuarios">
+				<h:column>
+					<f:facet name="header">Nombres</f:facet>
+					<h:inputText value="#{usuarios.nombreUsuario}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Apellidos</f:facet>
+					<h:inputText value="#{usuarios.apellidoUsuario}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Usuario</f:facet>
+					<h:inputText value="#{usuarios.usuarioNombreU}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Email</f:facet>
+					<h:inputText value="#{usuarios.emailUsuario}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Rol</f:facet>
+					<h:inputText value="#{usuarios.tipoUsuario}" />
+				</h:column>
+				<h:column>
+					<f:facet name="header">Eliminar</f:facet>
+					<h:commandButton type="button" class="btn btn-danger"
+						value="Eliminar">
+						<f:ajax render="tablausuarios" execute="@all">
+						</f:ajax>
+					</h:commandButton>
+				</h:column>
+				<h:column>
+					<f:facet name="header">Actualizar</f:facet>
+					<h:commandButton type="button" class="btn btn-warning"
+						value="Actualizar">
+						<f:ajax render="tablausuarios" execute="@all">
+						</f:ajax>
+					</h:commandButton>
+				</h:column>
+
+			</h:dataTable>
+
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>
