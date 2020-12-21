@@ -30,6 +30,7 @@ public class GestionProyectoBean implements Serializable{
 	private List<Usuario> listaUsuariosTipo;
 	private List<Usuario> listarClientes;
 	public static List<Usuario> UsuarioL=new ArrayList<Usuario>();
+	public static List<Cuenta> CuentaL=new ArrayList<Cuenta>();
 	@Inject
 	private UsuarioON usuarioON;
 	
@@ -173,6 +174,7 @@ public class GestionProyectoBean implements Serializable{
 			Cuenta cuenta= new Cuenta();
 			cuenta.setNumCuenta(cuentaON.generarNumeroCuenta());
 			cuenta.setSaldoCuenta(0.00);
+			//tipo de cuenta 
 			cuenta.setTipo("Cuenta Ahorro");
 			cuentaON.crearCuenta(cuenta);
 			usuario.setCuenta(cuenta);

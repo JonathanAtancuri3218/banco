@@ -17,11 +17,13 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.persistence.Query;
 import javax.persistence.metamodel.ListAttribute;
 
 import ec.ups.edu.banco.dao.CuentaDAO;
 import ec.ups.edu.banco.modelo.Cuenta;
 import ec.ups.edu.banco.modelo.DetalleSesion;
+import ec.ups.edu.banco.modelo.Transaccion;
 import ec.ups.edu.banco.modelo.Transferencia;
 import ec.ups.edu.banco.modelo.Usuario;
 
@@ -69,12 +71,12 @@ public class CuentaON {
 		System.out.println("---------- " + us.getEmailUsuario());
 		System.out.println("---------- " + us.getContraseniaUsuario());
 		String subject = "Creacion de Cuenta";
-		final String from = "esteban.sibri.nioo@gmail.com";
-		String body = "Un saludo cordial de Miutranfer cop.\nEl presente correo es para indicar que su cuenta fue creada correctamente\n"
+		final String from = "masterjhon067@gmail.com";
+		String body = "Bienvenido a Cooperativa S.A  \nSu cuenta fue creada correctamente\n"
 				+ "Su numero de cuenta es:" + us.getCuenta().getNumCuenta()
 				+ "\nPuede ingregar con su correo o usuario :" + us.getEmailUsuario() + " ----- " + us + " \n"
-				+ "Su contrase�a es : " + us.getContraseniaUsuario() + "\n\n\n\n"
-				+ "Gracias por elegirnos\nEste correo es solo informativo no debe ser respondido";
+				+ "Su contrasenia es : " + us.getContraseniaUsuario() + "\n\n\n\n"
+				+ "Gracias por elegirnos Cooperativa S.A";
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
@@ -85,7 +87,7 @@ public class CuentaON {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, "XJHYmnxt1995");
+				return new PasswordAuthentication(from, "13de1996");
 			}
 		});
 
@@ -112,10 +114,10 @@ public class CuentaON {
 		System.out.println("---------- " + us.getEmailUsuario());
 		System.out.println("---------- " + us.getContraseniaUsuario());
 		String subject = "Detalles credito";
-		final String from = "esteban.sibri.nioo@gmail.com";
-		String body = "Un saludo cordial de Miutranfer cop.\nEl presente correo es para indicar que su credito ha sido rechazado por no cumplir con los requisitos necesarios\n"
+		final String from = "masterjhon067@gmail.com";
+		String body = "Un saludo cordial de Cooperativa S.A cop.\nEl presente correo es para indicar que su credito ha sido rechazado por no cumplir con los requisitos necesarios\n"
 				+ "Para mas informacion por favor acercarse a consultoria"+ "\n\n\n\n"
-				+ "Gracias por elegirnos\nEste correo es solo informativo no debe ser respondido";
+				+ "Cooperativa S.A\nEste correo es solo informativo no debe ser respondido";
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
 		props.put("mail.smtp.starttls.enable", "true");
@@ -124,7 +126,7 @@ public class CuentaON {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, "XJHYmnxt1995");
+				return new PasswordAuthentication(from, "13de1996");
 			}
 		});
 
@@ -208,7 +210,7 @@ public class CuentaON {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(new Date());
 		String subject = "Inicio de Sesion";
-		final String from = "esteban.sibri.nioo@gmail.com";
+		final String from = "masterjhon067@gmail.com";
 		String body = "";
 		String detalle = "";
 		if (estado == 0) {
@@ -216,10 +218,10 @@ public class CuentaON {
 		} else {
 			detalle = "Erronea";
 		}
-		body = "MiauTranfer notifica que el ingreso a su cuenta fue " + detalle + " en el dispositivo: "
+		body = "Cooperativa S.A notifica que el ingreso a su cuenta fue " + detalle + " en el dispositivo: "
 				+ address.getHostAddress() + " el dia: " + date
-				+ "\n\n\n\nSi esta transaccion no fue realizada por ud o autorizada comuniquese con nosotros"
-				+ "\nGracias por preferirnos";
+				+ "\n\n\n\nSi esta transaccion no fue realizada por usted  comuniquese con nosotros"
+				+ "\nCooperativa S.A";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -229,7 +231,7 @@ public class CuentaON {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, "XJHYmnxt1995");
+				return new PasswordAuthentication(from, "13de1996");
 			}
 		});
 		try {
@@ -267,14 +269,14 @@ public class CuentaON {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(new Date());
 		String subject = "Inicio de Sesion";
-		final String from = "esteban.sibri.nioo@gmail.com";
+		final String from = "masterjhon067@gmail.com";
 		String body = "";
 		String detalle = "exitoso";
 		
-		body = "MiauTranfer notifica que el cambio de contrase�a fue " + detalle + " en el dispositivo: "
+		body = "Cooperativa S.A notifica que el cambio de contrasenia fue " + detalle + " en el dispositivo: "
 				+ address.getHostAddress() + " el dia: " + date
-				+ "\nsu nueva contrase�a es: "+us.getContraseniaUsuario()+"\n\n\n\nSi esta transaccion no fue realizada por ud o autorizada comuniquese con nosotros"
-				+ "\nGracias por preferirnos";
+				+ "\nsu nueva contrasenia es: "+us.getContraseniaUsuario()+"\n\n\n\nSi esta transaccion no fue realizada por usted comuniquese con nosotros"
+				+ "\nCooperativa S.A";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -284,7 +286,7 @@ public class CuentaON {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, "XJHYmnxt1995");
+				return new PasswordAuthentication(from, "13de1996");
 			}
 		});
 		try {
@@ -311,14 +313,14 @@ public class CuentaON {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(new Date());
 		String subject = "Inicio de Sesion";
-		final String from = "esteban.sibri.nioo@gmail.com";
+		final String from = "masterjhon067@gmail.com";
 		String body = "";
 		String detalle = "Transferencia";
 		
-		body = "MiauTranfer notifica que la" + detalle + " desde la cuenta: "+t.getCuentaOrigen()
+		body = "Cooperativa S.A notifica que la" + detalle + " desde la cuenta: "+t.getCuentaOrigen()
 				+ "hacia la cuenta: "+t.getCuentaDestino()+" el dia: " + date
-				+ "\n "+""+"\n\n\n\nSi esta transaccion no fue realizada por ud o autorizada comuniquese con nosotros"
-				+ "\nGracias por preferirnos";
+				+ "\n "+""+"\n\n\n\nSi esta transaccion no fue realizada por usted comuniquese con nosotros"
+				+ "\nCooperativa S.A";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -328,7 +330,7 @@ public class CuentaON {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, "XJHYmnxt1995");
+				return new PasswordAuthentication(from, "13de1996");
 			}
 		});
 		try {
@@ -357,14 +359,14 @@ public class CuentaON {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(new Date());
 		String subject = "Inicio de Sesion";
-		final String from = "esteban.sibri.nioo@gmail.com";
+		final String from = "masterjhon067@gmail.com";
 		String body = "";
 		String detalle = "Transferencia";
 		
-		body = "MiauTranfer notifica que la" + detalle + " desde su cuenta: "+t.getCuentaOrigen()
+		body = "Cooperativa S.A notifica que la" + detalle + " desde su cuenta: "+t.getCuentaOrigen()
 				+ "hacia la cuenta: "+t.getCuentaDestino()+" el dia: " + date
-				+ "\n "+"Se realizo con exito"+"\n\n\n\nSi esta transaccion no fue realizada por ud o autorizada comuniquese con nosotros"
-				+ "\nGracias por preferirnos";
+				+ "\n "+"Se realizo con exito"+"\n\n\n\nSi esta transaccion no fue realizada por usted comuniquese con nosotros"
+				+ "\nCooperativa Sociedad";
 
 		Properties props = new Properties();
 		props.put("mail.smtp.auth", "true");
@@ -374,7 +376,7 @@ public class CuentaON {
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, "XJHYmnxt1995");
+				return new PasswordAuthentication(from, "13de1996");
 			}
 		});
 		try {
@@ -394,6 +396,7 @@ public class CuentaON {
 	 * @param cuenta
 	 */
 	public void crearCuenta(Cuenta cuenta) {
+		
 		cdao.crearCuenta(cuenta);
 	}
 	
@@ -404,7 +407,9 @@ public class CuentaON {
 	public void actualizarCuenta(Cuenta cuenta) {
 		cdao.actualizarCuenta(cuenta);
 	}
-	
+/*
+ * Metodo para realizar el retiro	
+ */
 	public void retiro(double monto, Usuario usu) {
 
 		System.out.println(usu.getCuenta().getSaldoCuenta()-monto);
@@ -413,7 +418,9 @@ public class CuentaON {
 		actualizarCuenta(cuenta);
 		transaccionON.guardarTransaccion(cuenta, monto, "Retiro");
 		}
-	
+/*
+ * Metodo para Realizar el deposito	
+ */
 	public void deposito(double monto,Usuario usu) {
 		
 		System.out.println(usu.getCuenta().getSaldoCuenta()+monto);
@@ -424,7 +431,7 @@ public class CuentaON {
 		
 	}
 	
-	
+
 	public boolean transferencia(Transferencia t) {
 		Usuario us=usuarioOn.consultarCuentaUsuario(t.getCuentaOrigen()).get(0);
 		Usuario us1=usuarioOn.consultarCuentaUsuario(t.getCuentaDestino()).get(0);
@@ -447,6 +454,12 @@ public class CuentaON {
 	public void actualizarEstadoCredito(Credito credito){
 		credao.actualizarCredito(credito);
 	}
-	*/
+/*
+ * Metodo que devuelve la lista TipoCuenta
+ */
+	public List<Cuenta> ListarTipoCuenta(String tipoCue, String cuenta) {
+		return cdao.ListarTipoCuenta(tipoCue, cuenta);
+	
+}
 	
 }

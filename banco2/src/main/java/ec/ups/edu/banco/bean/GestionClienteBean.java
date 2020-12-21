@@ -11,9 +11,11 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 
+import ec.ups.edu.banco.modelo.Cuenta;
 import ec.ups.edu.banco.modelo.DetalleSesion;
 import ec.ups.edu.banco.modelo.Transaccion;
 import ec.ups.edu.banco.modelo.Usuario;
+import ec.ups.edu.banco.on.CuentaON;
 import ec.ups.edu.banco.on.DetalleSesionON;
 import ec.ups.edu.banco.on.TransaccionON;
 import ec.ups.edu.banco.on.UsuarioON;
@@ -28,6 +30,8 @@ public class GestionClienteBean implements Serializable{
 	private List<DetalleSesion> listarDetalleSesionTipo;
 	private List<Transaccion> listarTransaccionCuenta;
 	private List<Usuario> consultaCliente;
+	private List<Cuenta> listarCuentas;
+	
 	private Transaccion transaccion;
 	@Inject
 	private TransaccionON transaccionON;
@@ -36,6 +40,9 @@ public class GestionClienteBean implements Serializable{
 	@Inject
 	private DetalleSesionON detalleSesionON;
 	private DetalleSesion detSesion;
+	//@Inject
+	//private CuentaON cuentaON;
+	private Cuenta cuenta;
 	
 
 	private Date desde;
@@ -49,6 +56,7 @@ public class GestionClienteBean implements Serializable{
 		pattern = "dd/MM/yy";;
 		simpleDateFormat = new SimpleDateFormat(pattern);
 		transaccion = new Transaccion();
+		//cuenta=new Cuenta();
 		detSesion=new DetalleSesion();
 		transaccion.setTipoTransaccion("Todos");
 		consultarCuentaCliente();
@@ -136,6 +144,14 @@ public class GestionClienteBean implements Serializable{
 		this.hasta = hasta;
 	}
 
+	public Cuenta getCuenta() {
+		return cuenta;
+	}
+
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
+	}
+
 	public String ListarTransaccionesCuenta() {
 
 		String cuenta = GestionProyectoBean.UsuarioL.get(0).getCuenta().getNumCuenta();
@@ -190,6 +206,29 @@ public String ListarTipoSesion() {
 		}
 		return "lista de sesiones por tipo";
 	}
+
+/*
+public String ListarTipoCuentas() {
+	String tipo =cuenta.getTipo();
+	System.out.println(tipo);
+		//String cedula = GestionProyectoBean.UsuarioL.get(0).getCedulaUsuario();
+		//System.out.println(cedula);
+		String cuenta = GestionProyectoBean.CuentaL.get(0).getNumCuenta();
+		System.out.println(cuenta);
+		
+		if (tipo.equals("Cuenta Ahorro")) {
+			//listarCuentas= detalleSesionON.listarDetalleSesion(cedula);
+			listarCuentas=cuentaON.ListarTipoCuenta("Cuenta Ahorro", cuenta);
+		} else if (tipo.equals("Cuenta Corriente")) {
+			//listarDetalleSesionTipo =detalleSesionON.listarDetalleSesionTipo("Exitosa", cedula);
+			listarCuentas=cuentaON.ListarTipoCuenta("Cuenta Corriente", cuenta);
+		} else {
+			System.out.println("error de consulta");
+		}
+		return "lista de cuentas por tipo";
+	}
+
+*/
 	public String cambiarDetalle() {
 		return "DetalleCuenta";
 	}
