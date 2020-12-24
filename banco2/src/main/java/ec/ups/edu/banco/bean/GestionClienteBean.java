@@ -42,7 +42,7 @@ public class GestionClienteBean implements Serializable{
 	private DetalleSesion detSesion;
 	//@Inject
 	//private CuentaON cuentaON;
-	private Cuenta cuenta;
+	//private Cuenta cuenta;
 	
 
 	private Date desde;
@@ -143,7 +143,7 @@ public class GestionClienteBean implements Serializable{
 	public void setHasta(Date hasta) {
 		this.hasta = hasta;
 	}
-
+/*
 	public Cuenta getCuenta() {
 		return cuenta;
 	}
@@ -151,7 +151,7 @@ public class GestionClienteBean implements Serializable{
 	public void setCuenta(Cuenta cuenta) {
 		this.cuenta = cuenta;
 	}
-
+*/
 	public String ListarTransaccionesCuenta() {
 
 		String cuenta = GestionProyectoBean.UsuarioL.get(0).getCuenta().getNumCuenta();

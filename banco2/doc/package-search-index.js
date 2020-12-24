@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"ec.ups.edu.banco.bean"},{"l":"ec.ups.edu.banco.dao"},{"l":"ec.ups.edu.banco.modelo"},{"l":"ec.ups.edu.banco.on"},{"l":"ec.ups.edu.g1.banco2.test"}]

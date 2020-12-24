@@ -71,7 +71,7 @@ public class CuentaON {
 		System.out.println("---------- " + us.getEmailUsuario());
 		System.out.println("---------- " + us.getContraseniaUsuario());
 		String subject = "Creacion de Cuenta";
-		final String from = "masterjhon067@gmail.com";
+		final String from = "eloperz965@gmail.com";
 		String body = "Bienvenido a Cooperativa S.A  \nSu cuenta fue creada correctamente\n"
 				+ "Su numero de cuenta es:" + us.getCuenta().getNumCuenta()
 				+ "\nPuede ingregar con su correo o usuario :" + us.getEmailUsuario() + " ----- " + us + " \n"
@@ -114,7 +114,7 @@ public class CuentaON {
 		System.out.println("---------- " + us.getEmailUsuario());
 		System.out.println("---------- " + us.getContraseniaUsuario());
 		String subject = "Detalles credito";
-		final String from = "masterjhon067@gmail.com";
+		final String from = "eloperz965@gmail.com";
 		String body = "Un saludo cordial de Cooperativa S.A cop.\nEl presente correo es para indicar que su credito ha sido rechazado por no cumplir con los requisitos necesarios\n"
 				+ "Para mas informacion por favor acercarse a consultoria"+ "\n\n\n\n"
 				+ "Cooperativa S.A\nEste correo es solo informativo no debe ser respondido";
@@ -210,7 +210,7 @@ public class CuentaON {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(new Date());
 		String subject = "Inicio de Sesion";
-		final String from = "masterjhon067@gmail.com";
+		final String from = "eloperz965@gmail.com";
 		String body = "";
 		String detalle = "";
 		if (estado == 0) {
@@ -269,7 +269,7 @@ public class CuentaON {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(new Date());
 		String subject = "Inicio de Sesion";
-		final String from = "masterjhon067@gmail.com";
+		final String from = "eloperz965@gmail.com";
 		String body = "";
 		String detalle = "exitoso";
 		
@@ -313,7 +313,7 @@ public class CuentaON {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(new Date());
 		String subject = "Inicio de Sesion";
-		final String from = "masterjhon067@gmail.com";
+		final String from = "eloperz965@gmail.com";
 		String body = "";
 		String detalle = "Transferencia";
 		
@@ -359,7 +359,7 @@ public class CuentaON {
 		SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
 		String date = simpleDateFormat.format(new Date());
 		String subject = "Inicio de Sesion";
-		final String from = "masterjhon067@gmail.com";
+		final String from = "eloperz965@gmail.com";
 		String body = "";
 		String detalle = "Transferencia";
 		

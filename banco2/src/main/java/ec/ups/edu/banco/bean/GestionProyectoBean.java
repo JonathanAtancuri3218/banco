@@ -49,7 +49,7 @@ public class GestionProyectoBean implements Serializable{
 		ListarUsuariosTipo();
 		ListarClientes();
 		usuario=new Usuario();
-		cuenta=new Cuenta();
+		//cuenta=new Cuenta();
 		transaccion=new Transaccion();
 	}
 	

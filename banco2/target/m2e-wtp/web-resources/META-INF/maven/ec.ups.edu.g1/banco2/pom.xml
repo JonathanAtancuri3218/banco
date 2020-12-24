@@ -77,6 +77,14 @@
 			<artifactId>jakarta.enterprise.cdi-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin -->
+		<dependency>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-javadoc-plugin</artifactId>
+		    <version>3.2.0</version>
+		</dependency>
+		
 
 
 		<dependency>
@@ -110,6 +118,7 @@
 			<artifactId>jboss-jaxrs-api_2.1_spec</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		
 
 		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
